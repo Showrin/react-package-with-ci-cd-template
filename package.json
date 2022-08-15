@@ -1,0 +1,9 @@
+{
+  "name": "react-package-with-ci-cd-template",
+  "version": "1.0.0",
+  "description": "A full fledge template to create react-npm-package on the fly. This template took care of CI/CD setup of that package as well.",
+  "main": "dist/index.js",
+  "repository": "git@github.com:Showrin/react-package-with-ci-cd-template.git",
+  "author": "Showrin <showrinece15@gmail.com>",
+  "license": "MIT"
+}
