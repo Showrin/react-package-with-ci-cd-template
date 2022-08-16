@@ -2,14 +2,18 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
+    "jest/globals": true,
   },
-  extends: ["plugin:react/recommended", "airbnb", "prettier"],
+  extends: ["plugin:react/recommended", "plugin:jest/recommended", "airbnb", "prettier"],
   overrides: [],
   parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
+    },
     ecmaVersion: "latest",
     sourceType: "module",
   },
-  plugins: ["react"],
+  plugins: ["react", "jest"],
   rules: {
     "react/jsx-key": 2,
     "react/function-component-definition": [
