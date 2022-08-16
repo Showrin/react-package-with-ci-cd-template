@@ -10,8 +10,9 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "lint": "eslint --ext .js,.jsx src/** --no-error-on-unmatched-pattern",
-    "lint:fix": "yarn lint --fix"
+    "lint": "eslint . --no-error-on-unmatched-pattern",
+    "lint:fix": "yarn lint --fix",
+    "format": "prettier . --write"
   },
   "repository": "git@github.com:Showrin/react-package-with-ci-cd-template.git",
   "author": "Showrin <showrinece15@gmail.com>",
@@ -26,10 +27,12 @@
     "@rollup/plugin-node-resolve": "^13.3.0",
     "eslint": "^7.32.0 || ^8.2.0",
     "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
+    "prettier": "2.7.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "rollup": "^2.78.0",
