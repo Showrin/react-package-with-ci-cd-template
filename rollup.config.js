@@ -22,5 +22,5 @@ export default {
       exclude: "node_modules/**",
     }),
   ],
-  external: ["react", "react-dom", "@babel/runtime"],
+  external: ["react", "react-dom", "prop-types", "@babel/runtime"],
 };

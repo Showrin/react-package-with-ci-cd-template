@@ -10,7 +10,7 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "lint": "eslint . --no-error-on-unmatched-pattern",
+    "lint": "eslint .",
     "lint:fix": "yarn lint --fix",
     "format": "prettier . --write",
     "test": "jest",
@@ -21,6 +21,7 @@
   "repository": "git@github.com:Showrin/react-package-with-ci-cd-template.git",
   "author": "Showrin <showrinece15@gmail.com>",
   "license": "MIT",
+  "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.18.10",
     "@babel/plugin-transform-runtime": "^7.18.10",
@@ -58,8 +59,8 @@
     "rollup-plugin-sass": "^1.2.13"
   },
   "peerDependencies": {
+    "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
-  },
-  "dependencies": {}
+  }
 }
