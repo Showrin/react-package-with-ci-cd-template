@@ -10,7 +10,7 @@ on:
 jobs:
   test:
     name: Test and lint
-    uses: ./development.yml
+    uses: ./.github/workflows/development.yml
 
   docker:
     name: Build container
