@@ -1,11 +1,12 @@
 {
   "name": "react-package-with-ci-cd-template",
-  "version": "1.0.0",
+  "version": "0.0.0-development",
   "description": "A full fledge template to create react-npm-package on the fly. This template took care of CI/CD setup of that package as well.",
   "main": "dist/index.js",
   "files": [
     "dist",
-    "readme.md"
+    "readme.md",
+    "CHANGELOG.md"
   ],
   "scripts": {
     "build": "rollup -c",
@@ -16,7 +17,8 @@
     "test": "jest",
     "coverage": "jest --coverage",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "semantic-release": "semantic-release"
   },
   "repository": "git@github.com:Showrin/react-package-with-ci-cd-template.git",
   "author": "Showrin <showrinece15@gmail.com>",
@@ -30,6 +32,8 @@
     "@babel/runtime": "^7.18.9",
     "@rollup/plugin-babel": "^5.3.1",
     "@rollup/plugin-node-resolve": "^13.3.0",
+    "@semantic-release/changelog": "^6.0.1",
+    "@semantic-release/git": "^10.0.1",
     "@storybook/addon-actions": "^6.5.10",
     "@storybook/addon-essentials": "^6.5.10",
     "@storybook/addon-interactions": "^6.5.10",
@@ -56,7 +60,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "rollup": "^2.78.0",
-    "rollup-plugin-sass": "^1.2.13"
+    "rollup-plugin-sass": "^1.2.13",
+    "semantic-release": "^19.0.3"
   },
   "peerDependencies": {
     "prop-types": "^15.8.1",

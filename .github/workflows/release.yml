@@ -16,6 +16,8 @@ jobs:
 
   build:
     name: Build application
+    needs:
+      - test
     runs-on: ubuntu-latest
     steps:
       - name: "☁️ checkout repository"
@@ -24,63 +26,42 @@ jobs:
       - name: "🔧 setup node"
         uses: actions/setup-node@v2.1.5
         with:
-          node-version: 12.22
+          node-version: 16.10
 
-      - name: "🔧 install npm@latest"
+      - name: "🔧 install yarn@latest"
         run: npm i -g yarn@latest
 
       - name: "📦 install dependencies"
         uses: bahmutov/npm-install@v1
 
-      - name: "📊 repository visualizer"
-        id: diagram
-        uses: githubocto/repo-visualizer@0.7.1
-        with:
-          excluded_paths: "node_modules, .storybook, .github, build"
-          output_file: "public/diagram.svg"
-          should_push: false
-          root_path: "src/"
-          artifact_name: "diagram"
-
-      - name: "🚀 static app"
+      - name: "🚀 Build package"
         run: yarn build
 
-      - name: "📂 production artifacts"
-        uses: actions/upload-artifact@v2
-        with:
-          name: build
-          path: build
-
   release:
-    environment:
-      name: production
-      url: https://github.com/${{ github.repository }}/releases/tag/${{ steps.semantic-release.outputs.release-tag }}
-    name: Semantic release
+    name: Release
     needs:
       - test
       - build
     runs-on: ubuntu-latest
     steps:
-      - name: "☁️ checkout repository"
+      - name: Checkout
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
 
-      - name: "🚀 release"
-        id: semantic-release
-        uses: open-sauced/semantic-release-conventional-config@v3
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-  cleanup:
-    name: Cleanup actions
-    needs:
-      - release
-    runs-on: ubuntu-latest
-    steps:
-      - name: "♻️ remove build artifacts"
-        uses: geekyeggo/delete-artifact@v1
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
         with:
-          name: |
-            build
-            diagram
+          node-version: 16.10
+
+      - name: "🔧 install yarn@latest"
+        run: npm i -g yarn@latest
+
+      - name: Install dependencies
+        run: rm -rf node_modules && yarn install --frozen-lockfile
+
+      - name: Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npx semantic-release
