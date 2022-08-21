@@ -20,7 +20,7 @@ jobs:
       - name: "🔧 setup node"
         uses: actions/setup-node@v2.1.5
         with:
-          node-version: 16.10
+          node-version: 16.10.0
 
       - name: "🔧 install yarn@latest"
         run: npm i -g yarn@latest
@@ -63,7 +63,7 @@ jobs:
       - name: "🔧 setup node"
         uses: actions/setup-node@v2.1.5
         with:
-          node-version: 16.10
+          node-version: 16.10.0
 
       - name: "🔧 install yarn@latest"
         run: npm i -g yarn@latest
