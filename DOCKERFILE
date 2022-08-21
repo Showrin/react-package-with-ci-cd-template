@@ -1,0 +1,26 @@
+FROM node:12.22.0-alpine as development
+
+WORKDIR /app
+
+COPY package.json ./
+COPY .npmrc ./
+
+RUN npm install --global yarn@latest
+RUN rm -rf node_modules && yarn install --frozen-lockfile
+
+COPY .*.js ./
+COPY *config.?js ./
+COPY .babelrc ./
+COPY index.html ./
+COPY public ./public
+COPY src ./src
+
+CMD [ "yarn", "dev"]
+
+FROM development as builder
+
+RUN yarn build
+
+FROM nginx:1.21-alpine as production
+
+COPY --from=builder /app/build /usr/share/nginx/html
