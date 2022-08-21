@@ -8,12 +8,7 @@ COPY .npmrc ./
 RUN npm install --global yarn@latest
 RUN rm -rf node_modules && yarn install --frozen-lockfile
 
-COPY .*.js ./
-COPY *config.?js ./
-COPY .babelrc ./
-COPY index.html ./
-COPY public ./public
-COPY src ./src
+COPY . .
 
 CMD [ "yarn", "dev"]
 
