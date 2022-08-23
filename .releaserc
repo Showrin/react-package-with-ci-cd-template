@@ -1,9 +1,13 @@
 {
   "branches": [
+    "+([0-9])?(.{+([0-9]),x}).x",
     "main",
-    "beta",
-    "alpha",
-    "Setup-CI-CD-workflow-script"
+    "next",
+    "next-major",
+    {
+      "name": "beta",
+      "prerelease": true
+    }
   ],
   "plugins": [
     "@semantic-release/commit-analyzer",
