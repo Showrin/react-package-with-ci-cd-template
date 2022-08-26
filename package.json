@@ -19,7 +19,7 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "semantic-release": "semantic-release",
-    "postinstall": "husky install",
+    "postinstall": "husky install && chmod ug+x .husky/*",
     "prepack": "pinst --disable",
     "postpack": "pinst --enable",
     "commit": "git-cz"
