@@ -10,7 +10,11 @@ export default {
   },
 };
 
-const Template = (args) => <Display {...args} />;
+const Template = (args) => {
+  const { count } = args;
+
+  return <Display count={count} />;
+};
 
 export const DisplayWithCount = Template.bind({});
 DisplayWithCount.args = {

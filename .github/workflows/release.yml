@@ -1,0 +1,66 @@
+name: Release
+on:
+  push:
+    branches:
+      - '+([0-9])?(.{+([0-9]),x}).x'
+      - main
+      - next
+      - next-major
+      - beta
+
+jobs:
+  test:
+    name: Test and lint
+    uses: ./.github/workflows/development.yml
+
+  build:
+    name: Build application
+    needs:
+      - test
+    runs-on: ubuntu-latest
+    steps:
+      - name: "☁️ checkout repository"
+        uses: actions/checkout@v2
+
+      - name: "🔧 setup node"
+        uses: actions/setup-node@v2.1.5
+        with:
+          node-version: 16.10.0
+
+      - name: "🔧 install yarn@latest"
+        run: npm i -g yarn@latest
+
+      - name: "📦 install dependencies"
+        uses: bahmutov/npm-install@v1
+
+      - name: "🚀 Build package"
+        run: yarn build
+
+  release:
+    name: Release
+    needs:
+      - test
+      - build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.10.0
+
+      - name: "🔧 install yarn@latest"
+        run: npm i -g yarn@latest
+
+      - name: Install dependencies
+        run: rm -rf node_modules && yarn install --frozen-lockfile
+
+      - name: Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npx semantic-release
