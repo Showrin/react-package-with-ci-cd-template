@@ -4,5 +4,6 @@ module.exports = {
   extends: ["@commitlint/config-conventional"],
   rules: {
     "type-enum": [2, "always", Object.keys(types)],
+    "body-max-line-length": [2, "always", Infinity],
   },
 };
